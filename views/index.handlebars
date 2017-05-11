@@ -1,0 +1,49 @@
+<div class="jumbotron text-center">
+  <h1>Mmm... Mmm... Tasty.</h1> 
+</div>
+
+<div class='row'>
+  <div class='col-sm-5 col-sm-offset-5'>
+    <img src="assets/img/geneburger.jpg" alt="burgerImage" align="middle" height="200" width="200">
+  </div>
+</div>
+
+<div class='container-fluid full-width' id='main'>
+  <div class='row'>
+    <div class='col-sm-4 col-sm-offset-2'>
+      <h2>Choose Yo' Burger</h2>
+      {{#each burgers}}
+        {{#unless this.devoured}}
+          <div class='well'>{{this.id}}: {{this.burger_name}}
+            <form class='eat' action='/api/{{this.id}}?_method=PUT' method='POST'>
+              <input type='hidden' name='name' value='true'>
+              <button type='submit'>Devour!</button>
+            </form>
+          </div>
+        {{/unless}}
+      {{/each}}
+    </div>
+  
+    <div class='col-sm-4'>
+      <h2>Devoured</h2>
+      {{#each burgers}}
+        {{#if this.devoured}}
+          <div class='well well-sm'>{{this.id}}: {{this.burger_name}}</div>
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-sm-4 col-sm-offset-4'>
+      <h2>Build Yo' Burger!</h2>
+      <form action='/api/' method='POST'>
+        <input type='text' name='name'>
+        <button type='submit'>Build Yo' Burger!</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
